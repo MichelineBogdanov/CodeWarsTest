@@ -1,19 +1,27 @@
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 public class FilterList {
 
-    public static List filterList(final List list) {
-        // Return the List with the Strings filtered out
-        List<?> checkList = new ArrayList<>(list);
-        Iterator<?> iterator = checkList.iterator();
-        while (iterator.hasNext()) {
-            if (!(iterator.next() instanceof Integer)) {
-                iterator.remove();
-            }
+    public static void main(String[] args) {
+        ArrayList<Object> objects = new ArrayList<>();
+        objects.add(1);
+        objects.add("1");
+        objects.add('w');
+        objects.add(LocalTime.now());
+        objects.add(12L);
+        objects.add(12);
+        objects.add(new Object());
+
+        for (Object o : filterList(objects)) {
+            System.out.println(o);
         }
-        return checkList;
+    }
+
+    public static List<?> filterList(List<?> list) {
+        // Return the List with the Strings filtered out
+        list.removeIf(o -> !(o instanceof Integer));
+        return list;
     }
 }
