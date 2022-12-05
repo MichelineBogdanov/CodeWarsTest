@@ -10,7 +10,6 @@ public class SquareIfDigit {
     }
 
     public static int squareDigits(int n) {
-// TODO Implement me
         String str = String.valueOf(n);
         char[] chars = str.toCharArray();
         int[] ints = new int[chars.length];
