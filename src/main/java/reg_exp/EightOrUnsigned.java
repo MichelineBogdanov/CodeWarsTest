@@ -1,5 +1,4 @@
 package reg_exp;
-
 /*
 Implement String#eight_bit_number?, which should return true if given object is a number representable
 by 8 bit unsigned integer (0-255), false otherwise.

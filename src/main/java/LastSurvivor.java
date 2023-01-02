@@ -1,3 +1,4 @@
+
 /*
 You are given a string of letters and an array of numbers.
 The numbers indicate positions of letters that must be removed, in order,
