@@ -1,0 +1,52 @@
+
+/*
+You are going to be given a word. Your job will be to make sure that each character in that word
+has the exact same number of occurrences. You will return true if it is valid, or false if it is not.
+For this kata, capitals are considered the same as lowercase letters. Therefore: "A" == "a"
+The input is a string (with no spaces) containing [a-z],[A-Z],[0-9] and common symbols.
+The length will be 0 < length < 100.
+
+Examples
+"abcabc" is a valid word because "a" appears twice, "b" appears twice, and"c" appears twice.
+"abcabcd" is NOT a valid word because "a" appears twice, "b" appears twice, "c" appears twice, but "d" only appears once!
+"123abc!" is a valid word because all of the characters only appear once in the word.
+*/
+
+import static java.util.stream.Collectors.*;
+import java.util.Set;
+
+public class CharacterCounter {
+    public static void main(String[] args) {
+        System.out.println(validateWord("abcabc"));
+        System.out.println(validateWord("Abcabc"));
+        System.out.println(validateWord("AbcCBa"));
+        System.out.println(validateWord("?!?!?!"));
+        System.out.println(validateWord("abc123"));
+        System.out.println(validateWord("abc!abc!"));
+
+        System.out.println("---------");
+        System.out.println(validateWord("AbcabcC"));
+        System.out.println(validateWord("pippi"));
+        System.out.println(validateWord("abcabcd"));
+        System.out.println(validateWord("?abc:abc"));
+
+        System.out.println("---------");
+        System.out.println(validateWord("aaaabb"));
+    }
+
+    public static boolean validateWord(String word) {
+        String s = word.toLowerCase();
+        Set<Character> mySet = s
+                .chars()
+                .mapToObj(character -> (char) character)
+                .collect(toSet());
+        char ch = s.charAt(0);
+        long entries = s.chars()
+                .filter(c -> c == ch)
+                .count();
+        return mySet.stream().mapToLong(character -> s.chars()
+                .filter(c -> c == character)
+                .count()).noneMatch(current -> current != entries);
+    }
+}
+
